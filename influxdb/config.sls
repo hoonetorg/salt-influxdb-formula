@@ -3,9 +3,9 @@
 
 {% from "influxdb/map.jinja" import influxdb with context %}
 
-influxdb_config__config:
+influxdb_config__conffile:
   file.managed:
-    - name: {{ influxdb.config }}
+    - name: {{ influxdb.conffile }}
     - source: salt://influxdb/files/influxdb.conf.jinja
     - mode: 644
     - user: root
