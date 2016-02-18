@@ -1,72 +1,103 @@
 influxdb:
   lookup:
     conf:
-      without_section:
-        reporting-disabled: false
-      [meta]:
-        enabled: true
-        dir: "/var/lib/influxdb/meta"
-        bind-address: ":8088"
-        retention-autocreate: true
-        election-timeout: "1s"
-        heartbeat-timeout: "1s"
-        leader-lease-timeout: "500ms"
-        commit-timeout: "50ms"
-        cluster-tracing: false
-      [data]:
-        enabled: true
-        dir: "/var/lib/influxdb/data"
-        max-wal-size: 104857600
-        wal-flush-interval: "10m"
-        wal-partition-flush-delay: "2s"
-        wal-dir: "/var/lib/influxdb/wal"
-        wal-logging-enabled: true
-        data-logging-enabled: true
-      [hinted-handoff]:
-        enabled: true
-        dir: "/var/lib/influxdb/hh"
-        max-size: 1073741824
-        max-age: "168h"
-        retry-rate-limit: 0
-        retry-interval: "1s"
-        retry-max-interval: "1m"
-        purge-interval: "1h"
-      [cluster]:
-        shard-writer-timeout: "5s" #
-        write-timeout: "10s"
-      [retention]:
-        enabled: true
-        check-interval: "30m"
-      [shard-precreation]:
-        enabled: true
-        check-interval: "10m"
-        advance-period: "30m"
-      [monitor]:
-        store-enabled: true
-        store-database: "_internal"
-        store-interval: "10s"
-      [admin]:
-        enabled: true
-        bind-address: ":8083"
-        https-enabled: false
-        https-certificate: "/etc/ssl/influxdb.pem"
-      [http]:
-        enabled: true
-        bind-address: ":8086"
-        auth-enabled: false
-        log-enabled: true
-        write-tracing: false
-        pprof-enabled: false
-        https-enabled: false
-        https-certificate: "/etc/ssl/influxdb.pem"
-      [[graphite]]:
-        enabled: false
-      [collectd]:
-        enabled: false
-      [opentsdb]:
-        enabled: false
-      [[udp]]:
-        enabled: false
-      [continuous_queries]:
-        log-enabled: true
-        enabled: true
+      'without_section':
+        reporting-disabled: 'false'
+  
+      '[meta]':
+        enabled: 'true'
+        dir: '"/var/lib/influxdb/meta"'
+        bind-address: '":8088"'
+        retention-autocreate: 'true'
+        election-timeout: '"1s"'
+        heartbeat-timeout: '"1s"'
+        leader-lease-timeout: '"500ms"'
+        commit-timeout: '"50ms"'
+        cluster-tracing: 'false'
+  
+      '[data]':
+        enabled: 'true'
+        dir: '"/var/lib/influxdb/data"'
+        max-wal-size: '104857600'
+        wal-flush-interval: '"10m"'
+        wal-partition-flush-delay: '"2s"'
+        wal-dir: '"/var/lib/influxdb/wal"'
+        wal-logging-enabled: 'true'
+        data-logging-enabled: 'true'
+  
+      '[hinted-handoff]':
+        enabled: 'true'
+        dir: '"/var/lib/influxdb/hh"'
+        max-size: '1073741824'
+        max-age: '"168h"'
+        retry-rate-limit: '0'
+        retry-interval: '"1s"'
+        retry-max-interval: '"1m"'
+        purge-interval: '"1h"'
+  
+      '[cluster]':
+        shard-writer-timeout: '"5s"'
+        write-timeout: '"10s"'
+  
+      '[retention]':
+        enabled: 'true'
+        check-interval: '"30m"'
+  
+      '[shard-precreation]':
+        enabled: 'true'
+        check-interval: '"10m"'
+        advance-period: '"30m"'
+  
+      '[monitor]':
+        store-enabled: 'true'
+        store-database: '"_internal"'
+        store-interval: '"10s"'
+  
+      '[admin]':
+        enabled: 'true'
+        bind-address: '":8083"'
+        https-enabled: 'false'
+        https-certificate: '"/etc/ssl/influxdb.pem"'
+  
+      '[http]':
+        enabled: 'true'
+        bind-address: '":8086"'
+        auth-enabled: 'false'
+        log-enabled: 'true'
+        write-tracing: 'false'
+        pprof-enabled: 'false'
+        https-enabled: 'false'
+        https-certificate: '"/etc/ssl/influxdb.pem"'
+
+      '[[graphite]]':
+        enabled: 'true'
+        database: '"logstash"'
+        bind-address: '":2003"'
+        protocol: '"udp"'
+
+        # udp-read-buffer: default 0 - means take OS default 
+        # -> let's try with 0
+
+        # new in 0.10
+        #consistency-level: '"one"'
+        #name-separator: '"."'
+        #batch-size: '1000'
+        #batch-pending: '5'
+        #batch-timeout: '"1s"'
+
+      '[collectd]':
+        enabled: 'true'
+        bind-address: '":8096"'
+        database: '"collectd"'
+        typesdb: '"/usr/share/collectd/types.db"'
+
+      '[opentsdb]':
+        enabled: 'false'
+  
+      '[[udp]]':
+        enabled: 'false'
+  
+      '[continuous_queries]':
+        log-enabled: 'true'
+        enabled: 'true'
+  
