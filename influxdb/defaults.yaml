@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 influxdb:
-  pkg: influxdb
+  pkgs: 
+    - influxdb
   service:
     name: influxdb
+    state: running
+    enable: True
   conffile: '/etc/influxdb/influxdb.conf'
   
   # default settings in  influxdb-0.10.0-1.x86_64 rpm

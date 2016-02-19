@@ -1,7 +1,7 @@
 influxdb:
   lookup:
     conf:
-      'without_section':
+      'without_section_pre':
         reporting-disabled: 'false'
   
       '[meta]':

@@ -6,10 +6,10 @@
 influxdb_config__conffile:
   file.managed:
     - name: {{ influxdb.conffile }}
-    - source: salt://influxdb/files/influxdb.conf.jinja
+    - source: salt://influxdb/files/configtempl.jinja
     - template: jinja
     - context:
-      influxdb: {{influxdb|json}}
+      confdict: {{influxdb|json}}
     - mode: 644
     - user: root
     - group: root

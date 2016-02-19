@@ -5,4 +5,4 @@
 
 influxdb_install__pkg:
   pkg.installed:
-    - name: {{ influxdb.pkg }}
+    - pkgs: {{ influxdb.pkgs }}

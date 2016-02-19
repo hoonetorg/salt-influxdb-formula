@@ -4,6 +4,9 @@
 {% from "influxdb/map.jinja" import influxdb with context %}
 
 influxdb_service__service:
-  service.running:
+  service.{{ influxdb.service.state }}:
     - name: {{ influxdb.service.name }}
-    - enable: True
+{% if influxdb.service.state in [ 'running', 'dead' ] %}
+    - enable: {{ influxdb.service.enable }}
+{% endif %}
+
